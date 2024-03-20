@@ -14,6 +14,12 @@ pnpm dev
 bun dev
 ```
 
+```
+# https化
+npx local-ssl-proxy --key localhost-key.pem --cert localhost.pem --source 3001 --target 3000
+```
+
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
