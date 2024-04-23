@@ -5,8 +5,8 @@ import { signIn, signOut, useSession } from "next-auth/react";
 const Navbar = () => {
   const { data: session, status } = useSession();
   return (
-    <header className="bg-gray-700 p-4 text-white">
-      <div className="container mx-auto flex justify-between items-center">
+    <header className="bg-white p-4 text-custom-green border-b border-custom-green">
+      <div className="container mx-auto px-10 flex justify-between items-center">
         <h1 className="font-semibold text-xl">
           <Link href="/" className="text-2xl">
             hajimari

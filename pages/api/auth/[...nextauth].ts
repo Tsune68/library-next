@@ -33,10 +33,18 @@ export const authOptions = {
   adapter: adapter,
   providers: [
     SlackProvider({
-      clientId: <string> process.env.SLACK_CLIENT_ID,
-      clientSecret: <string> process.env.SLACK_CLIENT_SECRET,
+      clientId: <string>process.env.SLACK_CLIENT_ID,
+      clientSecret: <string>process.env.SLACK_CLIENT_SECRET,
     }),
   ],
+  callbacks: {
+    async session({ session, user }) {
+      if (user?.id) {
+        session.user.id = user.id;
+      }
+      return session;
+    },  
+  }
 };
 
 export default NextAuth(authOptions);

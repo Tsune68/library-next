@@ -41,14 +41,15 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String     @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?    @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
   Book          Book[]
+  books         UserBook[]
 }
 
 model VerificationToken {
@@ -60,15 +61,24 @@ model VerificationToken {
 }
 
 model Book {
-  id            String   @id @default(cuid())
+  id            String     @id @default(cuid())
   title         String
   author        String
   description   String
-  imageLink     String
-  isLending     Boolean  @default(false)
+  imageLink     String?
+  isLending     Boolean    @default(false)
   userId        String
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user          User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   publishedDate String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  users         UserBook[]
+}
+
+model UserBook {
+  id     Int    @id @default(autoincrement())
+  userId String
+  bookId String
+  user   User   @relation(fields: [userId], references: [id])
+  book   Book   @relation(fields: [bookId], references: [id])
 }
