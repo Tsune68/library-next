@@ -1,0 +1,6 @@
+.bookList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-content: center;
+  gap: 56px;
+}

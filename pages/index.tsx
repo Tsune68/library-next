@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@mantine/core";
+import { Book } from "@/types/book";
+import { BookList } from "@/components/BookList/BookList";
+import { LoginButton } from "@/components/LoginButton/LoginButton";
 
-export type Book = {
-  id: string;
-  title: string;
-  author: string;
-  description: string;
-  imageLink: string;
-  isLending: boolean;
-  publishedDate: string;
-};
 
 export default function Home() {
   const [books, setBooks] = useState<Book[]>([]);
@@ -33,7 +25,7 @@ export default function Home() {
     getAllBooks();
   }, []);
 
-  const updateIsRending = async (id: string) => {
+  const onUpdateIsRending = async (id: string) => {
     const response = await fetch("/api/books/update", {
       method: "POST",
       headers: {
@@ -66,39 +58,10 @@ export default function Home() {
       <div className="container mx-auto px-10 py-10">
         <p>You are logged in as {session.user.id}</p>
         <button onClick={() => signOut()}>Logout</button>
-        <div className="grid grid-cols-4 place-content-center gap-14">
-          {books &&
-            books.map((book) => (
-              <div key={book.id} className="grid-items m-auto mb-10">
-                <div>
-                  <div>
-                    <img
-                      className="shadow-custom"
-                      src={book.imageLink}
-                      alt={"本のサムネイル"}
-                    />
-                  </div>
-                  <Link href={`books/${book.id}`}>{book.title}</Link>
-                  <p>{book.author} / 著</p>
-                  {!book.isLending ? (
-                    <Button onClick={() => updateIsRending(book.id)}>
-                      借りる
-                    </Button>
-                  ) : (
-                    <button
-                      className="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                      onClick={() => updateIsRending(book.id)}
-                    >
-                      返却する
-                    </button>
-                  )}
-                </div>
-              </div>
-            ))}
-        </div>
+        <BookList books={books} onUpdateIsRending={onUpdateIsRending} />
       </div>
     );
   } else {
-    return <button onClick={() => signIn("slack")}>Login</button>;
+    return <LoginButton />;
   }
 }
