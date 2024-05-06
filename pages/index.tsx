@@ -4,7 +4,8 @@ import Image from "next/image";
 import { Book } from "@/types/book";
 import { BookList } from "@/components/BookList/BookList";
 import { LoginButton } from "@/components/LoginButton/LoginButton";
-
+import { fetchData } from "./api/fetchData";
+import { toast } from "react-toastify";
 
 export default function Home() {
   const [books, setBooks] = useState<Book[]>([]);
@@ -13,39 +14,20 @@ export default function Home() {
   //本の一覧を取得
   useEffect(() => {
     const getAllBooks = async () => {
-      const response = await fetch("/api/books", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const allbooks = await response.json();
+      const allbooks = await fetchData("/api/books", "GET");
       setBooks(allbooks);
     };
     getAllBooks();
   }, []);
 
   const onUpdateIsRending = async (id: string) => {
-    const response = await fetch("/api/books/update", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id }),
-    });
-
-    if (response.ok) {
-      const updatedBook = await response.json();
+    try {
+      const updatedBook = await fetchData("/api/books/update", "POST", { id });
       setBooks((books) =>
-        books.map((book) => {
-          if (book.id === id) {
-            return updatedBook;
-          }
-          return book;
-        })
+        books.map((book) => (book.id === id ? updatedBook : book))
       );
-    } else {
-      console.error("Failed to update the book");
+    } catch (error) {
+      console.error("Failed to update the book:", error);
     }
   };
 
