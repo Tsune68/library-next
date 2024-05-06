@@ -18,7 +18,7 @@ export const BookCard = ({ book, onUpdateIsRending }: Props) => {
             src={book.imageLink}
             alt={"本のサムネイル"}
             className={styles.bookCard_img}
-            width={125}
+            width={130}
             height={185}
           />
         </div>

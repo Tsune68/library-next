@@ -1,7 +1,7 @@
 .bookCard {
   margin: 0 auto;
   margin-bottom: 20px;
-  width: 200px;
+  width: 220px;
 
   &_thumbnail {
     width: 100%;
@@ -11,16 +11,17 @@
   }
 
   &_img {
+    position: relative;
     display: block;
     margin: 0 auto;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
     min-height: 185px;
   }
 
   &_title {
     position: relative;
     font-weight: bold;
-    font-size: 1.125rem;
+    font-size: 1rem;
     margin-top: 12px;
     line-height: 1.1;
 
