@@ -1,0 +1,58 @@
+.bookCard {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 220px;
+
+  &_thumbnail {
+    width: 100%;
+    border: 1px solid #cbcbcb;
+    padding: 30px 0 10px 0;
+    margin-bottom: 15px;
+  }
+
+  &_img {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    min-height: 185px;
+  }
+
+  &_title {
+    position: relative;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-top: 12px;
+    line-height: 1.1;
+
+    &::before {
+      position: absolute;
+      top: 5px;
+      left: -20px;
+      content: "＞";
+      font-size: 12px;
+      font-weight: normal;
+    }
+  }
+
+  &_author {
+    font-size: 0.875rem;
+    margin: 5px 0;
+  }
+
+  &_text_wrap {
+    padding-left: 20px;
+  }
+}
+
+.returnButton {
+  background-color: #6b7280;
+  color: white;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: #1d4ed8;
+  }
+}
