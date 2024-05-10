@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Book } from "..";
+import { Book } from "@/types/book";
 import { useRouter } from "next/router";
+import { fetchData } from "../api/fetchData";
+import Image from "next/image";
 
 type PropsType = {
   id: string;
@@ -14,21 +16,10 @@ const BookDetail = () => {
   useEffect(() => {
     // 仮のAPIから本のデータを取得する例
     const getBookDetail = async () => {
-      const response = await fetch(`/api/books/${id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const bookDetail = await response.json();
-      console.log(bookDetail);
+      const bookDetail = await fetchData(`/api/books/${id}`, "GET");
       setBook(bookDetail);
     };
     getBookDetail();
-
-    // fetch(`/api/books/${id}`)
-    //   .then((response) => response.json())
-    //   .then((data) => setBook(data));
   }, [id]);
 
   if (!book) {
@@ -37,7 +28,7 @@ const BookDetail = () => {
 
   return (
     <div>
-      <img src={book.imageLink} alt={"本のサムネイル"} />
+      <Image width={250} height={400} src={book.imageLink} alt={"本のサムネイル"} />
       <h1>{book.title}</h1>
       <p>{book.author}</p>
       {/* 他の本の詳細情報を表示 */}
