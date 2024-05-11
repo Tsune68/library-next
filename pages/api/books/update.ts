@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
-
-const prisma = new PrismaClient();
+import prisma from "@/lib/prisma";
 
 const updateBookIsLending = async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.body;
