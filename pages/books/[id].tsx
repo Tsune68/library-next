@@ -1,34 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Book } from "..";
+import { Book } from "@/types/book";
 import { useRouter } from "next/router";
+import { fetchData } from "../api/fetchData";
+import Image from "next/image";
+import BookDetail from "@/components/BookDetail/BookDetail";
 
 type PropsType = {
   id: string;
 };
 
-const BookDetail = () => {
+const BookPage = () => {
   const router = useRouter();
-  const { id } = router.query; // URLからidを取得
+  const { id } = router.query;
   const [book, setBook] = useState<Book>();
 
   useEffect(() => {
     // 仮のAPIから本のデータを取得する例
     const getBookDetail = async () => {
-      const response = await fetch(`/api/books/${id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const bookDetail = await response.json();
-      console.log(bookDetail);
+      const bookDetail = await fetchData(`/api/books/${id}`, "GET");
       setBook(bookDetail);
     };
     getBookDetail();
-
-    // fetch(`/api/books/${id}`)
-    //   .then((response) => response.json())
-    //   .then((data) => setBook(data));
   }, [id]);
 
   if (!book) {
@@ -36,13 +28,10 @@ const BookDetail = () => {
   }
 
   return (
-    <div>
-      <img src={book.imageLink} alt={"本のサムネイル"} />
-      <h1>{book.title}</h1>
-      <p>{book.author}</p>
-      {/* 他の本の詳細情報を表示 */}
+    <div className="container mx-auto px-10 py-10">
+      <BookDetail book={book} />
     </div>
   );
 };
 
-export default BookDetail;
+export default BookPage;

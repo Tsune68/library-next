@@ -1,9 +1,9 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
-import NextAuth from "next-auth";
+import NextAuth, { User } from "next-auth";
 import SlackProvider from "next-auth/providers/slack";
+import prisma from "@/lib/prisma";
 
-const prisma = new PrismaClient();
 const adapter = PrismaAdapter(prisma);
 
 adapter.linkAccount = async ({
@@ -38,7 +38,7 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async session({ session, user }) {
+    async session({ session, user }: { session: any, user: User }) {
       if (user?.id) {
         session.user.id = user.id;
       }

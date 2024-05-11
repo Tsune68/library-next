@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { signOut, useSession } from "next-auth/react";
-import Image from "next/image";
 import { Book } from "@/types/book";
 import { BookList } from "@/components/BookList/BookList";
 import { LoginButton } from "@/components/LoginButton/LoginButton";
 import { fetchData } from "./api/fetchData";
-import { toast } from "react-toastify";
 
 export default function Home() {
   const [books, setBooks] = useState<Book[]>([]);
