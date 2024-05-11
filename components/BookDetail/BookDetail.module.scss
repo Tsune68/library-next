@@ -1,0 +1,36 @@
+.bookDetail {
+  display: flex;
+  justify-content: space-between;
+
+  &_img {
+    width: 45%;
+    max-height: 500px;
+    border: 1px solid #cbcbcb;
+
+    img {
+      display: block;
+      width: 70%;
+      margin: 12% auto;
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &_info {
+    width: 48%;
+
+    &_title {
+      font-size: 1.65rem;
+      font-weight: bold;
+    }
+
+    &_author {
+      margin: 10px 0;
+    }
+
+    &_desc {
+      font-size: 1rem;
+      line-height: 2.125;
+      letter-spacing: 1.5px;
+    }
+  }
+}

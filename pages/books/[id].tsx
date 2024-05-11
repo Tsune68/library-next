@@ -3,14 +3,15 @@ import { Book } from "@/types/book";
 import { useRouter } from "next/router";
 import { fetchData } from "../api/fetchData";
 import Image from "next/image";
+import BookDetail from "@/components/BookDetail/BookDetail";
 
 type PropsType = {
   id: string;
 };
 
-const BookDetail = () => {
+const BookPage = () => {
   const router = useRouter();
-  const { id } = router.query; // URLからidを取得
+  const { id } = router.query;
   const [book, setBook] = useState<Book>();
 
   useEffect(() => {
@@ -27,13 +28,10 @@ const BookDetail = () => {
   }
 
   return (
-    <div>
-      <Image width={250} height={400} src={book.imageLink} alt={"本のサムネイル"} />
-      <h1>{book.title}</h1>
-      <p>{book.author}</p>
-      {/* 他の本の詳細情報を表示 */}
+    <div className="container mx-auto px-10 py-10">
+      <BookDetail book={book} />
     </div>
   );
 };
 
-export default BookDetail;
+export default BookPage;
