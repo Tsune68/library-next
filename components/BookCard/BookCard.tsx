@@ -6,10 +6,10 @@ import Image from "next/image";
 
 type Props = {
   book: Book;
-  onUpdateIsRending: (id: string) => void;
+  onRentalBook: (id: string) => void;
 };
 
-export const BookCard = ({ book, onUpdateIsRending }: Props) => {
+export const BookCard = ({ book, onRentalBook }: Props) => {
   return (
     <div className={styles.bookCard}>
       <a href={`books/${book.id}`}>
@@ -30,11 +30,11 @@ export const BookCard = ({ book, onUpdateIsRending }: Props) => {
         <p className={styles.bookCard_author}>{book.author} / 著</p>
 
         {!book.isLending ? (
-          <Button onClick={() => onUpdateIsRending(book.id)}>借りる</Button>
+          <Button onClick={() => onRentalBook(book.id)}>借りる</Button>
         ) : (
           <button
             className={styles.returnButton}
-            onClick={() => onUpdateIsRending(book.id)}
+            onClick={() => onRentalBook(book.id)}
           >
             返却する
           </button>

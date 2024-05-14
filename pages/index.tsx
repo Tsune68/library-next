@@ -18,12 +18,9 @@ export default function Home() {
     getAllBooks();
   }, []);
 
-  const onUpdateIsRending = async (id: string) => {
+  const rentalBook = async (bookId: string) => {
     try {
-      const updatedBook = await fetchData("/api/books/update", "POST", { id });
-      setBooks((books) =>
-        books.map((book) => (book.id === id ? updatedBook : book))
-      );
+      await fetchData("/api/books/rental", "POST", { bookId, userId: session?.user.id });
     } catch (error) {
       console.error("Failed to update the book:", error);
     }
@@ -38,7 +35,7 @@ export default function Home() {
       <div className="container mx-auto px-10 py-10">
         <p>You are logged in as {session.user.id}</p>
         <button onClick={() => signOut()}>Logout</button>
-        <BookList books={books} onUpdateIsRending={onUpdateIsRending} />
+        <BookList books={books} onRentalBook={rentalBook} />
       </div>
     );
   } else {
