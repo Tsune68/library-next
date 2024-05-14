@@ -5,9 +5,10 @@ import styles from "./BookList.module.scss";
 type Props = {
   books: Book[];
   onRentalBook: (id: string) => void;
+  onReturnBook: (id: string) => void;
 }
 
-export const BookList = ({books, onRentalBook}: Props) => {
+export const BookList = ({books, onRentalBook, onReturnBook}: Props) => {
   return (
     <div className={styles.bookList}>
       {books &&
@@ -16,6 +17,7 @@ export const BookList = ({books, onRentalBook}: Props) => {
             key={book.id}
             book={book}
             onRentalBook={onRentalBook}
+            onReturnBook={onReturnBook}
           />
         ))}
     </div>

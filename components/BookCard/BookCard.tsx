@@ -7,9 +7,10 @@ import Image from "next/image";
 type Props = {
   book: Book;
   onRentalBook: (id: string) => void;
+  onReturnBook: (id: string) => void;
 };
 
-export const BookCard = ({ book, onRentalBook }: Props) => {
+export const BookCard = ({ book, onRentalBook, onReturnBook }: Props) => {
   return (
     <div className={styles.bookCard}>
       <a href={`books/${book.id}`}>
@@ -28,13 +29,12 @@ export const BookCard = ({ book, onRentalBook }: Props) => {
           {book.title}
         </Link>
         <p className={styles.bookCard_author}>{book.author} / 著</p>
-
         {!book.isLending ? (
           <Button onClick={() => onRentalBook(book.id)}>借りる</Button>
         ) : (
           <button
             className={styles.returnButton}
-            onClick={() => onRentalBook(book.id)}
+            onClick={() => onReturnBook(book.id)}
           >
             返却する
           </button>

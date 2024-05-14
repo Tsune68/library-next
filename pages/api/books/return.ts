@@ -1,28 +1,25 @@
 import prisma from "@/lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
 
 const returnBook = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
   }
 
-  const session = await getSession({ req });
-
-  if (!session) {
-    return res.status(401).json({ messsage: "Unauthorized" });
-  }
-
-  const { bookId } = req.body;
+  const { bookId, userId } = req.body;
 
   if (!bookId) {
     return res.status(400).json({ message: "Invalid book ID" });
   }
 
+  if (!userId) {
+    return res.status(401).json({ messsage: "Unauthorized" });
+  }
+
   try {
     const rentalHistory = await prisma.rentalHistory.findFirst({
       where: {
-        userId: session.user.id,
+        userId: userId,
         bookId: bookId,
         returnedAt: null,
       },

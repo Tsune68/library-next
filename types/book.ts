@@ -4,6 +4,6 @@ export type Book = {
   author: string;
   description: string;
   imageLink: string;
-  isLending: boolean;
+  isLending?: boolean;
   publishedDate: string;
 };
