@@ -4,10 +4,11 @@ import styles from "./BookList.module.scss";
 
 type Props = {
   books: Book[];
-  onUpdateIsRending: (id: string) => void;
+  onRentalBook: (id: string) => void;
+  onReturnBook: (id: string) => void;
 }
 
-export const BookList = ({books, onUpdateIsRending}: Props) => {
+export const BookList = ({books, onRentalBook, onReturnBook}: Props) => {
   return (
     <div className={styles.bookList}>
       {books &&
@@ -15,7 +16,8 @@ export const BookList = ({books, onUpdateIsRending}: Props) => {
           <BookCard
             key={book.id}
             book={book}
-            onUpdateIsRending={onUpdateIsRending}
+            onRentalBook={onRentalBook}
+            onReturnBook={onReturnBook}
           />
         ))}
     </div>
