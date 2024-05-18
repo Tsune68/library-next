@@ -12,8 +12,9 @@ export default function Home() {
   //本の一覧を取得
   useEffect(() => {
     const getAllBooks = async () => {
-      const allbooks = await fetchData("/api/books", "GET");
-      setBooks(allbooks);
+      const response = await fetchData("/api/books", "GET");
+      const allBooks = response.data;
+      setBooks(allBooks);
     };
     getAllBooks();
   }, []);
