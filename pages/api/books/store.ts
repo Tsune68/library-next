@@ -14,13 +14,13 @@ export default async function storeBook(
   const { code, donor, userId } = req.body;
   const donorValue = donor || "office";
 
-  const isExistingBook = await prisma.book.findUnique({
+  const ExistingBook = await prisma.book.findUnique({
     where: {
       bookCode: code,
     },
   });
 
-  if (isExistingBook) {
+  if (ExistingBook) {
     return res.status(409).json({ message: "同じ本が既に存在します" });
   }
 
