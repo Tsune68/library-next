@@ -11,5 +11,10 @@ export const fetchData = async (url: string, method: string, data?: any) => {
   }
 
   const response = await fetch(url, options);
-  return response.json();
+  const responseData = await response.json();
+
+  return {
+    ok: response.ok,
+    data: responseData,
+  };
 };

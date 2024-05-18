@@ -66,6 +66,8 @@ model Book {
   author        String
   description   String
   imageLink     String?
+  bookCode      String          @unique
+  donor         String          @default("office")
   userId        String
   user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   publishedDate String?
