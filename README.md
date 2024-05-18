@@ -18,7 +18,11 @@ bun dev
 # https化
 npx local-ssl-proxy --key localhost-key.pem --cert localhost.pem --source 3001 --target 3000
 ```
-
+```
+# マイグレーション
+npx prisma migrate dev --name add_age_to_users
+npx prisma migrate deploy
+```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
