@@ -17,7 +17,8 @@ const BookPage = () => {
   useEffect(() => {
     // 仮のAPIから本のデータを取得する例
     const getBookDetail = async () => {
-      const bookDetail = await fetchData(`/api/books/${id}`, "GET");
+      const response = await fetchData(`/api/books/${id}`, "GET");
+      const bookDetail = response.data;
       setBook(bookDetail);
     };
     getBookDetail();
