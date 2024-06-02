@@ -1,9 +1,12 @@
+import { RentalHistory } from './rentalHistory';
+
 export type Book = {
   id: string;
   title: string;
   author: string;
   description: string;
   imageLink: string;
-  isLending?: boolean;
+  isLending: boolean;
   publishedDate: string;
+  rental?: RentalHistory;
 };

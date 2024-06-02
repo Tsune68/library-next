@@ -44,7 +44,8 @@ export const authOptions = {
       }
       return session;
     },  
-  }
+  },
+  debug: true, // デバッグ情報を有効にする
 };
 
 export default NextAuth(authOptions);

@@ -1,0 +1,32 @@
+.rentalButton {
+  background-color: #4169e1;
+  color: white;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.returnButton {
+  background-color: #6b7280;
+  color: white;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.disabledButton {
+  background-color: #ddd;
+  color: #999;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: not-allowed;
+}

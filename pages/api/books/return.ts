@@ -9,11 +9,11 @@ const returnBook = async (req: NextApiRequest, res: NextApiResponse) => {
   const { bookId, userId } = req.body;
 
   if (!bookId) {
-    return res.status(400).json({ message: "Invalid book ID" });
+    return res.status(400).json({ message: "本が存在しないです。" });
   }
 
   if (!userId) {
-    return res.status(401).json({ messsage: "Unauthorized" });
+    return res.status(401).json({ messsage: "ログインしてください。" });
   }
 
   try {
@@ -26,7 +26,9 @@ const returnBook = async (req: NextApiRequest, res: NextApiResponse) => {
     });
 
     if (!rentalHistory) {
-      return res.status(404).json({ message: "Rental history not found" });
+      return res
+        .status(404)
+        .json({ message: "貸し出し履歴に存在しないです。" });
     }
 
     const updatedRentalHistory = await prisma.rentalHistory.update({
@@ -38,7 +40,9 @@ const returnBook = async (req: NextApiRequest, res: NextApiResponse) => {
       },
     });
 
-    return res.status(200).json(updatedRentalHistory);
+    return res
+      .status(200)
+      .json({ updatedRentalHistory, message: "本を返却しました！" });
   } catch (error) {
     console.error("Error returning book:", error);
     return res.status(500).json({ message: "Failed to return book" });

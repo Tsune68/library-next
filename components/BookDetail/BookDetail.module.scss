@@ -6,12 +6,14 @@
     width: 45%;
     max-height: 500px;
     border: 1px solid #cbcbcb;
+    box-sizing: border-box;
+    padding: 3%;
 
     img {
       display: block;
-      width: 70%;
-      margin: 12% auto;
+      margin: 0 auto;
       box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+      height: 100%;
     }
   }
 
