@@ -10,18 +10,17 @@ const getAllBooks = async (req: NextApiRequest, res: NextApiResponse) => {
       orderBy: {
         createdAt: "desc",
       },
-    });
-
-    const rentals = await prisma.rentalHistory.findMany({
-      where: {
-        returnedAt: null,
+      include: {
+        rentalHistory: true
       },
     });
 
     const booksWithLendingStatus = allBooks.map((book) => {
-      const isLending = rentals.some((rental) => rental.bookId === book.id);
+      const rental = book.rentalHistory.find((rental) => rental.returnedAt === null);
+      const isLending = !!rental;
       return {
         ...book,
+        rental,
         isLending,
       };
     });

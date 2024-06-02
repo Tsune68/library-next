@@ -9,11 +9,11 @@ const rentalBook = async (req: NextApiRequest, res: NextApiResponse) => {
   const { bookId, userId } = req.body;
 
   if (!bookId) {
-    return res.status(405).json({ message: "Book ID is required" });
+    return res.status(405).json({ message: "本が存在しないです。" });
   }
 
   if(!userId) {
-    return res.status(401).json({ messsage: "Unauthorized" });
+    return res.status(401).json({ messsage: "ログインしてください。" });
   }
 
   try {
@@ -24,7 +24,7 @@ const rentalBook = async (req: NextApiRequest, res: NextApiResponse) => {
       },
     });
 
-    return res.status(201).json(rental);
+    return res.status(201).json({rental, message:"レンタルしました！"});
   } catch (error) {
     console.log(error);
     

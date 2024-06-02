@@ -1,8 +1,9 @@
 import { Book } from "@/types/book";
 import Link from "next/link";
-import { Button } from "@mantine/core";
 import styles from "./BookCard.module.scss";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
+import BookButton from "../BookButton/BookButton";
 
 type Props = {
   book: Book;
@@ -11,6 +12,8 @@ type Props = {
 };
 
 export const BookCard = ({ book, onRentalBook, onReturnBook }: Props) => {
+  const { data: session } = useSession();
+
   return (
     <div className={styles.bookCard}>
       <a href={`books/${book.id}`}>
@@ -29,16 +32,12 @@ export const BookCard = ({ book, onRentalBook, onReturnBook }: Props) => {
           {book.title}
         </Link>
         <p className={styles.bookCard_author}>{book.author} / 著</p>
-        {!book.isLending ? (
-          <Button onClick={() => onRentalBook(book.id)}>借りる</Button>
-        ) : (
-          <button
-            className={styles.returnButton}
-            onClick={() => onReturnBook(book.id)}
-          >
-            返却する
-          </button>
-        )}
+        <BookButton
+          isLending={book.isLending}
+          isOwned={book.rental?.userId === session?.user.id}
+          onRentalBook={() => onRentalBook(book.id)}
+          onReturnBook={() => onReturnBook(book.id)}
+        />
       </div>
     </div>
   );
