@@ -17,7 +17,7 @@ const getAllBooks = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const booksWithLendingStatus = allBooks.map((book) => {
       const rental = book.rentalHistory.find((rental) => rental.returnedAt === null);
-      const isLending = book.rentalHistory.length > 0;
+      const isLending = !!rental;
       return {
         ...book,
         rental,

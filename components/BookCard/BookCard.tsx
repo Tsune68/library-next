@@ -13,34 +13,6 @@ type Props = {
 
 export const BookCard = ({ book, onRentalBook, onReturnBook }: Props) => {
   const { data: session } = useSession();
-  let actionButton;
-
-  // 貸し出し状態によってボタンの表示を変更
-  if (book.isLending && book.rental?.userId === session?.user.id) {
-    actionButton = (
-      <button
-        className={styles.returnButton}
-        onClick={() => onReturnBook(book.id)}
-      >
-        返却する
-      </button>
-    );
-  } else if (!book.isLending) {
-    actionButton = (
-      <button
-        className={styles.rentalButton}
-        onClick={() => onRentalBook(book.id)}
-      >
-        借りる
-      </button>
-    );
-  } else {
-    actionButton = (
-      <button className={styles.disabledButton} disabled>
-        貸し出し中
-      </button>
-    );
-  }
 
   return (
     <div className={styles.bookCard}>
