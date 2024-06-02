@@ -28,7 +28,7 @@ const Navbar = () => {
             ) : (
               <>
                 <Link
-                  href="auth/signin"
+                  href="/auth/signin"
                   className="bg-white text-gray-900 py-2 px-3 rounded-lg font-medium"
                 >
                   ログイン
