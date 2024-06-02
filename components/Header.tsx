@@ -16,7 +16,7 @@ const Navbar = () => {
           <ul className="flex space-x-4">
             {status === "authenticated" ? (
               <>
-                <Link href={`/profile/${session?.user?.name}`} className="flex items-center">
+                <Link href={`/profile/${session?.user?.id}`} className="flex items-center">
                   <img
                     src={session.user.image}
                     className="rounded-full w-10 h-10"
