@@ -8,5 +8,5 @@ export type Book = {
   imageLink: string;
   isLending: boolean;
   publishedDate: string;
-  rental?: RentalHistory;
+  rental?: RentalHistory | null;
 };
