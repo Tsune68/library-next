@@ -1,5 +1,4 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
 import NextAuth, { User } from "next-auth";
 import SlackProvider from "next-auth/providers/slack";
 import prisma from "@/lib/prisma";
