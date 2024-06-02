@@ -9,14 +9,14 @@ const Navbar = () => {
       <div className="container mx-auto px-10 flex justify-between items-center">
         <h1 className="font-semibold text-xl">
           <Link href="/" className="text-2xl">
-            hajimari
+            hajimari文庫
           </Link>
         </h1>
         <nav>
           <ul className="flex space-x-4">
             {status === "authenticated" ? (
               <>
-                <Link href={`/profile/${session?.user?.name}`} className="flex items-center">
+                <Link href={`/profile/${session?.user?.id}`} className="flex items-center">
                   <img
                     src={session.user.image}
                     className="rounded-full w-10 h-10"

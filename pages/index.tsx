@@ -4,28 +4,60 @@ import { Book } from "@/types/book";
 import { BookList } from "@/components/BookList/BookList";
 import { LoginButton } from "@/components/LoginButton/LoginButton";
 import { fetchData } from "./api/fetchData";
+import { toast } from "react-toastify";
 
 export default function Home() {
-  const [books, setBooks] = useState<Book[]>([]);
   const { data: session, status } = useSession();
+  const [books, setBooks] = useState<Book[]>([]);
+
+  const getAllBooks = async () => {
+    const response = await fetchData("/api/books", "GET");
+    const allBooks = response.data;
+    setBooks(allBooks);
+  };
 
   //本の一覧を取得
   useEffect(() => {
-    const getAllBooks = async () => {
-      const allbooks = await fetchData("/api/books", "GET");
-      setBooks(allbooks);
-    };
     getAllBooks();
   }, []);
 
-  const onUpdateIsRending = async (id: string) => {
+  const rentalBook = async (bookId: string) => {
     try {
-      const updatedBook = await fetchData("/api/books/update", "POST", { id });
-      setBooks((books) =>
-        books.map((book) => (book.id === id ? updatedBook : book))
-      );
+      const response = await fetchData("/api/books/rental", "POST", {
+        bookId,
+        userId: session?.user.id,
+      });
+      if (response.ok) {
+        toast.success(response.data.message);
+        getAllBooks();
+      } else {
+        toast.error(response.data.message);
+      }
     } catch (error) {
-      console.error("Failed to update the book:", error);
+      console.error("Failed to rental the book:", error);
+    }
+  };
+
+  const returnBook = async (bookId: string) => {
+    try {
+      const response = await fetchData("/api/books/return", "POST", {
+        bookId,
+        userId: session?.user.id,
+      });
+      if (response.ok) {
+        toast.success(response.data.message);
+        setBooks((prevBooks) =>
+          prevBooks.map((book) =>
+            book.id === bookId
+              ? { ...book, isLending: false, rental: null }
+              : book
+          )
+        );
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.error("Failed to return the book:", error);
     }
   };
 
@@ -38,7 +70,11 @@ export default function Home() {
       <div className="container mx-auto px-10 py-10">
         <p>You are logged in as {session.user.id}</p>
         <button onClick={() => signOut()}>Logout</button>
-        <BookList books={books} onUpdateIsRending={onUpdateIsRending} />
+        <BookList
+          books={books}
+          onRentalBook={rentalBook}
+          onReturnBook={returnBook}
+        />
       </div>
     );
   } else {

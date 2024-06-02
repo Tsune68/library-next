@@ -1,27 +1,27 @@
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
-import { toast } from 'react-toastify'
+import { toast } from "react-toastify";
+import { fetchData } from "../api/fetchData";
 
 const Store = () => {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const [code, setCode] = useState("");
+  const [donor, setDonor] = useState("");
+
   const storeBook = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await fetch("/api/books/store", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ code, userId: session?.user.id }),
+    const response = await fetchData("/api/books/store", "POST", {
+      code,
+      donor,
+      userId: session?.user.id,
     });
 
     if (response.ok) {
-      toast.success('本の登録に成功しました！')
+      toast.success(response.data.message);
       setCode("");
-      console.log("Book saved successfully");
+      setDonor("");
     } else {
-      toast.error('本の登録に失敗しました、、、')
-      console.error("Failed to save the book");
+      toast.error(response.data.message);
     }
   };
   return (
@@ -31,8 +31,17 @@ const Store = () => {
           className="h-24 p-2 border border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-blue-400"
           placeholder="ISBNコードを入力してください。"
           onChange={(e) => setCode(e.target.value)}
+          required
           value={code}
         />
+        <br />
+        <input
+          className="h-24 p-2 border border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-blue-400"
+          placeholder="寄贈者の名前を入力してください"
+          onChange={(e) => setDonor(e.target.value)}
+          value={donor}
+        />
+        <br />
         <button type="submit">登録する</button>
       </form>
     </div>

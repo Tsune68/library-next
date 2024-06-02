@@ -1,4 +1,3 @@
-import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 
@@ -11,8 +10,22 @@ const getAllBooks = async (req: NextApiRequest, res: NextApiResponse) => {
       orderBy: {
         createdAt: "desc",
       },
+      include: {
+        rentalHistory: true
+      },
     });
-    return res.status(200).json(allBooks);
+
+    const booksWithLendingStatus = allBooks.map((book) => {
+      const rental = book.rentalHistory.find((rental) => rental.returnedAt === null);
+      const isLending = !!rental;
+      return {
+        ...book,
+        rental,
+        isLending,
+      };
+    });
+
+    return res.status(200).json(booksWithLendingStatus);
   } catch (err) {
     return res.status(500).json({ message: "Failed to retrieve books" });
   }

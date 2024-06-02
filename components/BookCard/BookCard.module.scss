@@ -15,7 +15,7 @@
     display: block;
     margin: 0 auto;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-    min-height: 185px;
+    height: 185px;
   }
 
   &_title {
@@ -42,17 +42,5 @@
 
   &_text_wrap {
     padding-left: 20px;
-  }
-}
-
-.returnButton {
-  background-color: #6b7280;
-  color: white;
-  font-weight: bold;
-  padding: 8px 16px;
-  border-radius: 4px;
-
-  &:hover {
-    background-color: #1d4ed8;
   }
 }

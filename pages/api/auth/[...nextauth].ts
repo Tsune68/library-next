@@ -1,5 +1,4 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
 import NextAuth, { User } from "next-auth";
 import SlackProvider from "next-auth/providers/slack";
 import prisma from "@/lib/prisma";
@@ -44,7 +43,8 @@ export const authOptions = {
       }
       return session;
     },  
-  }
+  },
+  debug: true, // デバッグ情報を有効にする
 };
 
 export default NextAuth(authOptions);
