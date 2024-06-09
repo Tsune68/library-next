@@ -42,7 +42,7 @@ const Header = () => {
               </>
             ) : (
               <>
-                <Link href="/auth/signin" className={styles.signinLink}>
+                <Link href="/auth/signin" className={styles.header_list}>
                   ログイン
                 </Link>
               </>
