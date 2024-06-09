@@ -24,8 +24,8 @@ const ProfilePage = () => {
   }, [id]);
 
   return (
-    <div className="container mx-auto px-10 py-10">
-      <h1>貸し出し履歴</h1>
+    <div className="pageContainer">
+      <h1 className="pageTitle">利用履歴</h1>
       {rentalHistory && rentalHistory.length > 0 ? (
         <RentalHistoryList rentalHistory={rentalHistory} />
       ) : (
