@@ -1,0 +1,34 @@
+.bookForm {
+  width: 65%;
+  margin: 0 auto;
+
+  &_input {
+    display: block;
+    height: 80px;
+    width: 100%;
+    padding: 0.5rem;
+    letter-spacing: 2.5px;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    resize: none;
+    margin-bottom: 20px;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #3b82f6;
+    }
+  }
+
+  &_button {
+      background-color: #4169e1;
+      color: white;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 4px;
+    
+      &:hover {
+        opacity: 0.8;
+      }
+    
+  }
+}
