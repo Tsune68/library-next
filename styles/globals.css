@@ -32,3 +32,18 @@ body {
     text-wrap: balance;
   }
 }
+
+.pageContainer {
+    max-width: 80%;
+    margin: 0 auto;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.pageTitle {
+  text-align: center;
+  font-weight: bold;
+  color: gray;
+  font-size: 1.7rem;
+  margin-bottom: 50px;
+}

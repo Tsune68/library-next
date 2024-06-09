@@ -1,4 +1,5 @@
 import { Book } from "./book";
+import { User } from "./user";
 
 export type RentalHistory = {
   id: number;
@@ -7,4 +8,5 @@ export type RentalHistory = {
   borrowedAt: Date;
   returnedAt: Date | null;
   book: Book;
+  user: User;
 };

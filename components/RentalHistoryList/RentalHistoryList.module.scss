@@ -1,0 +1,32 @@
+.historyList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-content: center;
+  grid-auto-rows: minmax(0, auto);
+  gap: 30px;
+
+  li {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  p {
+    margin-top: 5px;
+  }
+
+  &_title {
+    display: block;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-top: 10px;
+    font-size: 1.1rem;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  &_img {
+    margin: 0 auto;
+  }
+}
