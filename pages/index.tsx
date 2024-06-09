@@ -67,7 +67,7 @@ export default function Home() {
 
   if (status === "authenticated") {
     return (
-      <div className="container mx-auto px-10 py-10">
+      <div className="pageContainer">
         <p>You are logged in as {session.user.id}</p>
         <button onClick={() => signOut()}>Logout</button>
         <BookList

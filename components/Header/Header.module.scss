@@ -1,0 +1,61 @@
+.header {
+  background-color: white;
+  padding: 1rem;
+  color: #00505A;
+  border-bottom: 1px solid #00505A;
+  box-shadow: 0px 1px 5px 0px #00505A;
+
+  &_list {
+    font-weight: bold;
+    margin-left: 10px;
+  }
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  max-width: 80%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.link {
+  font-size: 2rem;
+  color: #00505A;
+  text-decoration: none;
+}
+
+.nav {
+  ul {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .profileLink {
+    display: flex;
+    align-items: center;
+  }
+
+  .icon {
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-left: 10px;
+  }
+
+  .signinLink {
+    background-color: white;
+    color: #4A5568;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    text-decoration: none;
+  }
+}
