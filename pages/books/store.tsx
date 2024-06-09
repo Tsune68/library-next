@@ -2,6 +2,7 @@ import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { fetchData } from "../api/fetchData";
+import BookForm from "@/components/BookForm/BookForm";
 
 const Store = () => {
   const { data: session } = useSession();
@@ -25,25 +26,15 @@ const Store = () => {
     }
   };
   return (
-    <div>
-      <form onSubmit={storeBook}>
-        <input
-          className="h-24 p-2 border border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-blue-400"
-          placeholder="ISBNコードを入力してください。"
-          onChange={(e) => setCode(e.target.value)}
-          required
-          value={code}
-        />
-        <br />
-        <input
-          className="h-24 p-2 border border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-blue-400"
-          placeholder="寄贈者の名前を入力してください"
-          onChange={(e) => setDonor(e.target.value)}
-          value={donor}
-        />
-        <br />
-        <button type="submit">登録する</button>
-      </form>
+    <div className="pageContainer">
+      <h1 className="pageTitle">本の登録</h1>
+      <BookForm
+        code={code}
+        donor={donor}
+        setCode={setCode}
+        setDonor={setDonor}
+        onSubmit={storeBook}
+      />
     </div>
   );
 };
