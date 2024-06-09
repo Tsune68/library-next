@@ -78,6 +78,10 @@ export default function Home() {
       </div>
     );
   } else {
-    return <LoginButton />;
+    return (
+      <div className="pageContainer">
+        <LoginButton />;
+      </div>
+    );
   }
 }
