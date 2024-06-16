@@ -12,7 +12,10 @@ export default async function storeBook(
   }
 
   const { code, donor, userId } = req.body;
-  const donorValue = donor || "office";
+
+  if(!donor) {
+    return res.status(409).json({message: "本の持ち主を入力してください"});
+  }
 
   const ExistingBook = await prisma.book.findUnique({
     where: {
@@ -36,9 +39,9 @@ export default async function storeBook(
           title: item.title,
           author: item.authors[0],
           description: item.description,
-          imageLink: item.imageLinks?.thumbnail,
+          imageLink: item.imageLinks?.thumbnail ?? "/images/NoImage.png",
           bookCode: code,
-          donor: donorValue,
+          donor: donor,
           userId: userId,
           publishedDate: item.publishedDate,
         },

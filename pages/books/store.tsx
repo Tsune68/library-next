@@ -7,7 +7,7 @@ import BookForm from "@/components/BookForm/BookForm";
 const Store = () => {
   const { data: session } = useSession();
   const [code, setCode] = useState("");
-  const [donor, setDonor] = useState("");
+  const [donor, setDonor] = useState(session?.user.name?.replace(/\s+/g, '') || "");
 
   const storeBook = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

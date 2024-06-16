@@ -25,6 +25,11 @@ export const BookCard = ({ book, onRentalBook, onReturnBook }: Props) => {
             width={130}
             height={185}
           />
+          {/* {book.isLending ? (
+            <span className={styles.bookCard_label_lending}>貸出中</span>
+          ) : (
+            <span className={styles.bookCard_label_notLending}>貸出可能</span>
+          )} */}
         </div>
       </a>
       <div className={styles.bookCard_text_wrap}>

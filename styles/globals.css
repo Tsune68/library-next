@@ -36,8 +36,8 @@ body {
 .pageContainer {
     max-width: 80%;
     margin: 0 auto;
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
 
 .pageTitle {

@@ -68,8 +68,8 @@ export default function Home() {
   if (status === "authenticated") {
     return (
       <div className="pageContainer">
-        <p>You are logged in as {session.user.id}</p>
-        <button onClick={() => signOut()}>Logout</button>
+        {/* <p>You are logged in as {session.user.id}</p>
+        <button onClick={() => signOut()}>Logout</button> */}
         <BookList
           books={books}
           onRentalBook={rentalBook}
