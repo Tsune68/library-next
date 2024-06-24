@@ -11,10 +11,15 @@ export default async function storeBook(
     return res.status(405).json({ message: "Method Not Allowed" });
   }
 
-  const { code, donor, userId } = req.body;
+  const { code, donor, userId, place } = req.body;
 
   if(!donor) {
     return res.status(409).json({message: "本の持ち主を入力してください"});
+  }
+
+  const validPlaces = ["自宅", "オフィス"];
+  if (!validPlaces.includes(place)) {
+    return res.status(400).json({ message: "適切な置き場所を選択してください" });
   }
 
   const ExistingBook = await prisma.book.findUnique({
@@ -44,6 +49,7 @@ export default async function storeBook(
           donor: donor,
           userId: userId,
           publishedDate: item.publishedDate,
+          place: place,
         },
       });
       return res

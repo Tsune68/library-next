@@ -11,12 +11,32 @@
     border: 1px solid #d1d5db;
     border-radius: 0.25rem;
     resize: none;
-    margin-top: 20px;
 
     &:focus {
       outline: none;
       box-shadow: 0 0 0 2px #3b82f6;
     }
+  }
+
+  &_label {
+    margin-bottom: 3px;
+    color: gray;
+    letter-spacing: 2.5px;
+    display: inline-block;
+    margin-top: 10px;
+
+    span {
+      color: #d9534f;
+    }
+  }
+
+  &_select {
+    display: block;
+    border: 1px solid;
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
   }
 
   &_button {

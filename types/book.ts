@@ -9,4 +9,6 @@ export type Book = {
   isLending: boolean;
   publishedDate: string;
   rental?: RentalHistory | null;
+  place: string;
+  donor: string;
 };
