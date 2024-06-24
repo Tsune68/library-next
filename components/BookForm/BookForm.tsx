@@ -2,15 +2,32 @@ import React from "react";
 import styles from "./BookForm.module.scss";
 import Image from "next/image";
 
+type Place = {
+  id: number;
+  place: string;
+};
+
 type Props = {
   code: string;
   donor: string;
   setCode: React.Dispatch<React.SetStateAction<string>>;
   setDonor: React.Dispatch<React.SetStateAction<string>>;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  places: Place[];
+  selectedPlace: string;
+  onSelectChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const BookForm = ({ code, donor, setCode, setDonor, onSubmit }: Props) => {
+const BookForm = ({
+  code,
+  donor,
+  setCode,
+  setDonor,
+  onSubmit,
+  places,
+  selectedPlace,
+  onSelectChange,
+}: Props) => {
   return (
     <div className={styles.bookForm}>
       <div className={styles.bookForm_caution}>
@@ -29,7 +46,12 @@ const BookForm = ({ code, donor, setCode, setDonor, onSubmit }: Props) => {
       </div>
 
       <form onSubmit={onSubmit}>
+        <label htmlFor="bookCode" className={styles.bookForm_label}>
+          ISBNコード
+          <span>*</span>
+        </label>
         <input
+          id="bookCode"
           className={styles.bookForm_input}
           placeholder="ISBNコードを入力してください。"
           onChange={(e) => setCode(e.target.value)}
@@ -52,13 +74,33 @@ const BookForm = ({ code, donor, setCode, setDonor, onSubmit }: Props) => {
             />
           </div>
         </details>
+        <label htmlFor="donor" className={styles.bookForm_label}>
+          持ち主の名前
+          <span>*</span>
+        </label>
         <input
+          id="donor"
           className={styles.bookForm_input}
           placeholder="持ち主の名前を入力してください"
           onChange={(e) => setDonor(e.target.value)}
           required
           value={donor}
         />
+        <label htmlFor="place" className={styles.bookForm_label}>
+          本の置き場所
+        </label>
+        <select
+          id="place"
+          className={styles.bookForm_select}
+          onChange={onSelectChange}
+          required
+        >
+          {places.map((place) => (
+            <option value={place.place} key={place.id}>
+              {place.place}
+            </option>
+          ))}
+        </select>
         <button className={styles.bookForm_button} type="submit">
           登録する
         </button>

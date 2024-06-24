@@ -26,14 +26,20 @@ const BookDetail = ({ book, onRentalBook, onReturnBook }: Props) => {
       </div>
       <div className={styles.bookDetail_info}>
         <h1 className={styles.bookDetail_info_title}>{book.title}</h1>
-        <p className={styles.bookDetail_info_author}>{book.author} /著</p>
+        <div className={styles.bookDetail_info_sub}>
+          <p className={styles.bookDetail_info_author}>{book.author} /著、</p>
+          <p className={styles.bookDetail_info_donor}>持ち主：{book.donor}、</p>
+          <p className={styles.bookDetail_info_place}>
+            置き場所：{book.place}
+          </p>
+        </div>
         <p className={styles.bookDetail_info_desc}>{book.description}</p>
         <BookButton
-        isLending={book.isLending}
-        isOwned={book.rental?.userId === session?.user.id}
-        onRentalBook={() => onRentalBook(book.id)}
-        onReturnBook={() => onReturnBook(book.id)}
-      />
+          isLending={book.isLending}
+          isOwned={book.rental?.userId === session?.user.id}
+          onRentalBook={() => onRentalBook(book.id)}
+          onReturnBook={() => onReturnBook(book.id)}
+        />
       </div>
     </div>
   );

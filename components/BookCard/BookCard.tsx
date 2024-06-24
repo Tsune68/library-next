@@ -36,7 +36,11 @@ export const BookCard = ({ book, onRentalBook, onReturnBook }: Props) => {
         <Link href={`books/${book.id}`} className={styles.bookCard_title}>
           {book.title}
         </Link>
-        <p className={styles.bookCard_author}>{book.author} / 著</p>
+        <div className={styles.bookCard_desc}>
+          {/* <p className={styles.bookCard_author}>{book.author} / 著</p> */}
+          <p className={styles.bookCard_desc_text}>置き場所：{book.place}</p>
+          <p className={styles.bookCard_desc_text}>持ち主：{book.donor}</p>
+        </div>
         <BookButton
           isLending={book.isLending}
           isOwned={book.rental?.userId === session?.user.id}
