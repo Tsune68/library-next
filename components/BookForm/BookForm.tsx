@@ -42,6 +42,10 @@ const BookForm = ({
           <li>
             会社で買った場合は、<b>オフィス</b>と入力してください。
           </li>
+          <li>
+            ISBNコードは、-(ハイフン)等を省略して<b>数字のみ</b>
+            で入力してください。
+          </li>
         </ul>
       </div>
 
@@ -101,6 +105,22 @@ const BookForm = ({
             </option>
           ))}
         </select>
+        <details>
+          <summary className={styles.place_details}>本の置き場所とは</summary>
+          <div>
+            <strong>自宅</strong>
+            <p>
+              まだ読む可能性がある本や、普段手元に置いておきたい本は「自宅」を選択して登録してください。その上で、借りたい人が現れた場合は、直接受け渡しの調整を行ってください。
+            </p>
+          </div>
+          <div>
+            <strong>オフィス</strong>
+            <p>
+              既に読まない本や、本の受け渡しの手続きを簡略化したい方は「オフィス」を選択して登録してください。その後、対象の本をオフィスにお持ちください。オフィスで一括して保管いたします。
+            </p>
+          </div>
+        </details>
+
         <button className={styles.bookForm_button} type="submit">
           登録する
         </button>
